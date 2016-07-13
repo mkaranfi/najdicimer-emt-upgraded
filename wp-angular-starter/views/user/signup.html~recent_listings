@@ -1,0 +1,236 @@
+<div ng-controller="signupController">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+                <form ng-submit="save()" name="signup_form" novalidate>
+
+                    <div class="row">
+                        <div class="col-md-6"
+                             ng-class="{ 'has-error': (signup_form.name.$touched && signup_form.name.$invalid) || (submitted && signup_form.name.$invalid) }">
+
+                            <div class="col-xs-3 customlabel">
+                                <label for="name">Име: </label>
+                            </div>
+
+                            <div class="col-xs-9">
+                                <input type="text" id="name" class="form-control" placeholder="Име" ng-model="name"
+                                       name="name" required>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3">
+                                <div class="help-block" ng-messages="signup_form.name.$error"
+                                     ng-if="submitted || signup_form.name.$touched">
+                                    <p ng-message="required">Внеси име</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 customalign"
+                             ng-class="{ 'has-error': (signup_form.surname.$touched && signup_form.surname.$invalid) || (submitted && signup_form.surname.$invalid) }">
+
+                            <div class="col-xs-3 customlabel customspacing">
+                                <label for="surname">Презиме: </label>
+                            </div>
+
+                            <div class="col-xs-9 customspacing">
+                                <input type="text" id="surname" class="form-control" placeholder="Презиме"
+                                       name="surname" ng-model="surname" required>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3">
+                                <div class="help-block" ng-messages="signup_form.surname.$error"
+                                     ng-if="submitted || signup_form.surname.$touched">
+                                    <p ng-message="required">Внеси презиме</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12"
+                             ng-class="{ 'has-error': (signup_form.email.$touched && signup_form.email.$invalid) || (submitted && signup_form.email.$invalid) }">
+
+                            <div class="col-xs-3 customlabel">
+                                <label for="email">email: </label>
+                            </div>
+
+                            <div class="col-xs-9">
+                                <input type="email" id="email" class="form-control" placeholder="email" ng-model="email"
+                                       name="email" required>
+
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3">
+                                <div class="help-block" ng-messages="signup_form.email.$error"
+                                     ng-if="submitted || signup_form.email.$touched">
+                                    <p ng-message="required">Внеси email</p>
+                                </div>
+                                <div class="help-block" ng-messages="signup_form.email.$error" ng-if="submitted">
+                                    <p ng-message="email">Внеси валиден email</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12"
+                             ng-class="{ 'has-error': (signup_form.username.$touched && signup_form.username.$invalid) || (submitted && signup_form.username.$invalid) }">
+
+                            <div class="col-xs-3 customlabel">
+                                <label for="username">Корисничко име: </label>
+                            </div>
+
+                            <div class="col-xs-9">
+                                <input type="text" id="username" class="form-control" placeholder="Корисничко име"
+                                       ng-model="username" name="username" required valid-username>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3">
+                                <div class="help-block" ng-messages="signup_form.username.$error"
+                                     ng-if="submitted || signup_form.username.$touched">
+                                    <p ng-message="required">Внеси корисничко име</p>
+
+                                    <p ng-message="unique">Корисничкото име е зафатено</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="col-xs-3 customlabel">
+                                <label>Дата на раѓање: </label>
+                            </div>
+
+                            <div class="col-xs-9">
+
+                                <select ng-model="day" class="form-control dateinput" style="width: 66px;">
+                                    <option ng-repeat="i in dayData" value="{{i}}">
+                                        {{i}}
+                                    </option>
+                                </select>
+
+                                <select class="form-control dateinput" ng-model="monthT" style="width: 123px;">
+                                    <option>Јануари</option>
+                                    <option>Февруари</option>
+                                    <option>Март</option>
+                                    <option>Април</option>
+                                    <option>Мај</option>
+                                    <option>Јуни</option>
+                                    <option>Јули</option>
+                                    <option>Август</option>
+                                    <option>Септември</option>
+                                    <option>Октомври</option>
+                                    <option>Ноември</option>
+                                    <option>Декември</option>
+                                </select>
+
+                                <select ng-model="year" class="form-control dateinput" style="width: 82px">
+                                    <option ng-repeat="i in yearData" value="{{i}}">
+                                        {{i}}
+                                    </option>
+                                </select>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6"
+                             ng-class="{ 'has-error': (signup_form.password.$touched && signup_form.password.$invalid) || (submitted && signup_form.password.$invalid) }">
+
+                            <div class="col-xs-3 customlabel">
+                                <label>Лозинка: </label>
+                            </div>
+
+                            <div class="col-xs-9">
+                                <input type="password" id="password" class="form-control" placeholder="Лозинка"
+                                       ng-model="password" name="password" required>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3">
+                                <div class="help-block" ng-messages="signup_form.password.$error"
+                                     ng-if="submitted || signup_form.password.$touched">
+                                    <p ng-message="required">Внеси лозинка</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6 customalign"
+                             ng-class="{ 'has-error': (signup_form.confirm.$touched && signup_form.confirm.$invalid) || (submitted && signup_form.confirm.$invalid) }">
+
+                            <div class="col-xs-3 customlabel customspacing">
+                                <label for="confirm_password">Потврди: </label>
+                            </div>
+
+                            <div class="col-xs-9 customspacing">
+                                <input type="password" id="confirm_password" class="form-control"
+                                       placeholder="Потврди Лозинка" ng-model="confirm" name="confirm"
+                                       ng-pattern="{{password}}" required>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3">
+                                <div class="help-block" ng-messages="signup_form.confirm.$error"
+                                     ng-if="submitted || signup_form.confirm.$touched">
+                                    <p ng-message="required">Потврди лозинка</p>
+
+                                    <p ng-message="pattern">Лозинката не се совпаѓа</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-success btn-block btn-lg" type="submit" ng-click="submitted=true"
+                                    ng-keyup="submitted=false">Зачувај
+                            </button>
+                        </div>
+
+                        <div class="col-md-6 customspacing">
+                            <button class="btn btn-danger btn-block btn-lg" ng-click="cancel()">Откажи</button>
+                        </div>
+
+                        <div class="col-md-12">
+                            <hr style="border-top:solid 2px #fae7b5"/>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="row">
+
+                    <div class="col-xs-9 col-xs-offset-3">
+                        <div class="pull-right">
+
+                            <span>Имаш акаунт? </span>
+                            <button class="btn btn-warning" ng-click="login()">Логирај се</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

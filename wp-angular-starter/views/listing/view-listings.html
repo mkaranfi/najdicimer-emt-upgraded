@@ -1,0 +1,48 @@
+<div class="container top-div">
+    <div class="row">
+        <div dir-paginate="listing in listings | itemsPerPage: usersPerPage"
+             current-page="currentPage">
+            <div class="col-md-4">
+                <div class="box">
+                    <div data-ng-show="listing.user.id == userId"
+                         style="z-index:2;position:absolute;padding-left: 75%;">
+                        <img src="img/star.png" class="img-responsive">
+                    </div>
+                    <a class="listing-link" ui-sref="view-listing({id: listing.id})">
+                        <div class="listing-wrapper">
+                            <div class="carousel slide" id="slider{{$index}}">
+                                <div class="carousel-inner">
+                                    <div data-ng-repeat="image in listing.imageURLs" class="item"
+                                         ng-class="{active:!$index}">
+                                        <img data-ng-src="{{serverURL + image}}" class="img-responsive center-block "/>
+                                    </div>
+                                </div>
+                                <a class="carousel-control left" data-target="#slider{{$index}}"
+                                   data-slide="prev">
+                                    <i class="fa fa-chevron-circle-left fa-lg"></i>
+                                </a>
+                                <a class="carousel-control right" data-target="#slider{{$index}}"
+                                   data-slide="next">
+                                    <i class="fa fa-chevron-circle-right fa-lg"></i>
+                                </a>
+                            </div>
+                            <a ui-sref="view-listing({id: listing.id})" class="listing-link">
+                                <div class="title-style text-center">
+                                    <span>{{listing.title}}</span>
+                                </div>
+                            </a>
+                        </div>
+                    </a>
+
+                    <div class="date-style text-center">
+                        <span>{{listing.createdOn}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true"
+                                 on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+    </div>
+</div>

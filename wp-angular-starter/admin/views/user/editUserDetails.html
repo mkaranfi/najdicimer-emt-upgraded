@@ -1,0 +1,38 @@
+<button ui-sref="app.userDetails({id:user.id})" data-ng-click="save();" class="pull-right btn btn-primary">
+    <i class="fa fa-floppy-o"></i> Зачувај
+</button>
+<button ui-sref="app.userDetails({id:user.id})" class="pull-right btn btn-danger margin-right">
+    <i class="fa fa-undo"></i> Откажи
+</button>
+
+<div class="pull-left" id="editUserDetails">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-male"></i></span>
+        <input class="form-control" type="text" ng-model="user.name"/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-male"></i></span>
+        <input class="form-control" type="text" ng-model="user.surname"/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+        <input class="form-control" type="text" ng-model="user.email"/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <input class="form-control" type="text" ng-model="user.username"/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+        <input class="form-control" type="text" ng-model="user.password"/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        <input class="form-control" type="text" ng-model="user.birthDate"/>
+    </div>
+</div>

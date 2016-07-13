@@ -1,0 +1,112 @@
+<div>
+    <div class="container" style="margin-top:6%;">
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-1">
+                <form enctype="multipart/form-data" ng-submit="createListing()" name="listing_form" novalidate>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': (submitted && listing_form.title.$invalid) }">
+                        <input class="form-control" type="text" name="title" ng-model="title"
+                               placeholder="Наслов..." required>
+
+                        <div class="help-block" ng-messages="listing_form.title.$error"
+                             ng-if="submitted">
+                            <p ng-message="required">Внеси наслов на огласот</p>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': (submitted && listing_form.content.$invalid) }">
+                        <textarea ui-tinymce="tinymceOptions" rows="10" name="content" ng-model="content"
+                                  class="form-control"
+                                  placeholder="Содржина..." style="resize:none;" required></textarea>
+
+                        <div class="help-block" ng-messages="listing_form.content.$error"
+                             ng-if="submitted || listing_form.content.$touched">
+                            <p ng-message="required">Внеси оглас</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <span class="btn btn-success fileinput-button"><i
+                                    class="fa fa-file-image-o"></i><span> Прикачи слики...</span>
+                                <input type="file" multiple accept="image/*"
+                                       file-model="myFile"/></span>
+                    </div>
+
+                     <input placeholder="Избери локација" class="form-control" force-selection="true"
+                           options="autocompleteOptions" type="text" g-places-autocomplete ng-model="location"/>
+                    <br/> <br/>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block btn-lg" ng-click="submitted=true"
+                                ng-keyup="submitted=false">
+                            <i class="fa fa-globe"></i><span> Објави</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <button class="btn btn-default btn-block">
+                            <div class="panel-heading" data-toggle="collapse" href="#collapse1">
+                                <h4 class="panel-title">
+                                    <i class="fa fa-chevron-down" style="font-size:15px;"></i>
+                                    <span>ВОДИЧ1</span>
+                                </h4>
+                            </div>
+                        </button>
+
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <p class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <button class="btn btn-default btn-block">
+                            <div class="panel-heading" data-toggle="collapse" href="#collapse2">
+                                <h4 class="panel-title">
+                                    <i class="fa fa-chevron-down" style="font-size:15px;"></i>
+                                    <span>ВОДИЧ2</span>
+                                </h4>
+                            </div>
+                        </button>
+
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <p class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <button class="btn btn-default btn-block">
+                            <div class="panel-heading" data-toggle="collapse" href="#collapse3">
+                                <h4 class="panel-title">
+                                    <i class="fa fa-chevron-down" style="font-size:15px;"></i>
+                                    <span>ВОДИЧ3</span>
+                                </h4>
+                            </div>
+                        </button>
+
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <p class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

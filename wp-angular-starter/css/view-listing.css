@@ -1,0 +1,55 @@
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+.top-div {
+    margin-top: 6%;
+}
+
+.report-btn {
+    position: absolute;
+    padding-left: 96%;
+    margin-top: -2%;
+}
+
+.text-center {
+    margin-top: 8%;
+}
+
+.text-center span {
+    font-size:85%;
+}
+
+.panel-body p {
+    font-size: 120%;
+}
+
+.pull-left div .btn-warning.btn  {
+    margin-top: 5%;
+    font-size:100%;
+}
+
+.carousel-control.left, .carousel-control.right {
+    top: 40%;
+    background: none;
+}
+
+img.img-responsive.img {
+    height: 300px;
+    width: auto;
+}
+.pull-left div{
+    font-size:70%;
+}
+.pull-left span {
+    font-style:italic;
+}
+.carousel-control i {
+    color:#333;
+}

@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <table class="table table-striped">
+        <tr>
+            <th class="col-md-1">ID</th>
+            <th>Име</th>
+            <th>Презиме</th>
+            <th>Корисничко име</th>
+            <th class="col-md-1"></th>
+            <th class="col-md-1"></th>
+        </tr>
+        <tr dir-paginate="user in users | itemsPerPage: usersPerPage" current-page="currentPage">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.username}}</td>
+            <td>
+                <button class="btn btn-danger" data-ng-click="removeUser(user.id);"><i class="fa fa-trash"></i> Избриши
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-primary" ui-sref="app.userDetails({id:user.id})"><i class="fa fa-eye"></i>
+                    Види/Измени
+                </button>
+            </td>
+        </tr>
+    </table>
+    <dir-pagination-controls boundary-links="true"
+                             on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+</div>

@@ -1,0 +1,213 @@
+/*body {
+    overflow-x: hidden;
+}
+
+.navbar-header .navbar-toggle .icon-bar {
+    background-color: #c3ff12;
+}
+
+.navbar-toggle {
+    border: 1px solid #c3ff12;
+}
+
+.navbar-nav > li > a:hover {
+
+    background-color: transparent;
+}
+
+.navbar-nav > li > a:link {
+
+    background-color: transparent;
+}
+
+.navbar-nav > li > a {
+    color: #c3ff12;
+    font-size: 16px;
+}
+
+.form-control {
+
+    height: 48px;
+    border: 1px solid #fada5e;
+    box-shadow: inset 0 1px 1px #faf0be;
+    color: #696969;
+    font-size: 16px;
+}
+
+#main-button {
+
+    height: 48px;
+    color: white;
+
+}
+
+.btn-default {
+
+    background-color: #ffc51b;
+    border-color: #fada5e;
+}
+
+input[type="text"]:focus {
+    border-color: #fae7b5;
+    box-shadow: none;
+    outline: 0 none;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+    color: #bfc1c2;
+}
+
+.btn:hover {
+
+    background-color: #fae7b5;
+    color: white;
+    border-color: #fae7b5;
+}
+
+.jumbotron {
+
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    margin-bottom: 0;
+}
+
+.bg {
+    background-image: url('../img/roommates.jpg');
+    background-size: cover;
+    height: 100%;
+    opacity: 0.8;
+}
+
+#cimer {
+    margin-bottom: 60px;
+    vertical-align: middle;
+}
+
+#main-header {
+    color: #fada5e;
+    font-weight: 600;
+    opacity: 0.9;
+
+    text-shadow: 3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.btn.btn-secondary.form-control {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}*/
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.navbar-header .navbar-toggle .icon-bar {
+    background-color: #c3ff12;
+}
+
+.navbar-toggle {
+    border: 1px solid #c3ff12;
+}
+
+.navbar-nav > li > a:hover {
+
+    background-color: transparent;
+}
+
+.navbar-nav > li > a:link {
+
+    background-color: transparent;
+}
+
+.navbar-nav > li > a {
+    color: #c3ff12;
+    font-size: 16px;
+}
+
+.form-control {
+
+    height: 48px;
+    border: 1px solid #fada5e;
+    box-shadow: inset 0 1px 1px #faf0be;
+    color: #696969;
+    font-size: 16px;
+}
+
+#main-button {
+
+    height: 48px;
+    color: white;
+
+}
+
+.btn-default {
+
+    background-color: #ffc51b;
+    border-color: #fada5e;
+}
+
+input[type="text"]:focus {
+    border-color: #fae7b5;
+    box-shadow: none;
+    outline: 0 none;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+    color: #bfc1c2;
+}
+
+.btn:hover {
+
+    background-color: #fae7b5;
+    color: white;
+    border-color: #fae7b5;
+}
+
+#fixed-content {
+    z-index: 1;
+    position: fixed;
+    top: 20%;
+    left: 8%;
+}
+
+#cimer {
+    margin-bottom: 60px;
+    vertical-align: middle;
+}
+
+#main-header {
+    color: #fada5e;
+    font-weight: 600;
+    opacity: 0.9;
+
+    color: #fada5e;
+    font-weight: 600;
+    opacity: 0.9;
+
+    text-shadow: 3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+
+    font-size: 430%;
+}
+
+.btn.btn-secondary.form-control {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.custom-style {
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.carousel.slide {
+    opacity: 0.8;
+}

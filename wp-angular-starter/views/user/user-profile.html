@@ -1,0 +1,115 @@
+<div class="container" style="margin-top:6%;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group"><label>Корисничко име</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input class="form-control" ng-model="user.username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Име</label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                            <input class="form-control" ng-model="user.name">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Презиме</label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                            <input class="form-control" ng-model="user.surname">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>e-mail</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input class="form-control" ng-model="user.email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Дата на раѓање</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input class="form-control" type="text" ng-model="user.birthDate"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Лозинка</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    <input class="form-control" type="text" ng-model="user.password"/>
+                </div>
+            </div>
+            <br/>
+
+            <div class="text-center">
+                <button data-ng-click="editProfile();" class="btn btn-warning ">
+                    <i class="fa fa-pencil-square-o" style="color:#FFFFFF;"></i> Зачувај промени
+                </button>
+                <button class="btn btn-default" ui-sref="home">Откажи</button>
+            </div>
+        </div>
+        <div class="col-md-offset-1 col-md-5">
+            <h2>Мои огласи</h2>
+
+            <div class="row">
+
+                <div dir-paginate="listing in listings | itemsPerPage: usersPerPage"
+                     current-page="currentPage">
+                    <div class="box">
+                        <a class="listing-link" ui-sref="view-listing({id: listing.id})">
+                            <div class="listing-wrapper">
+                                <div class="carousel slide" id="slider{{$index}}">
+                                    <div class="carousel-inner">
+                                        <div data-ng-repeat="image in listing.imageURLs" class="item"
+                                             ng-class="{active:!$index}">
+                                            <img data-ng-src="{{serverURL + image}}"
+                                                 class="img-responsive center-block "/>
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control left" data-target="#slider{{$index}}"
+                                       data-slide="prev">
+                                        <i class="fa fa-chevron-circle-left fa-lg"></i>
+                                    </a>
+                                    <a class="carousel-control right" data-target="#slider{{$index}}"
+                                       data-slide="next">
+                                        <i class="fa fa-chevron-circle-right fa-lg"></i>
+                                    </a>
+                                </div>
+                                <a ui-sref="view-listing({id: listing.id})" class="listing-link">
+                                    <div class="title-style text-center">
+                                        <span>{{listing.title}}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </a>
+
+                        <div class="date-style text-center">
+                            <span>{{listing.createdOn}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <dir-pagination-controls boundary-links="true"
+                                         on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

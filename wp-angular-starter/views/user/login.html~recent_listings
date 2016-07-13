@@ -1,0 +1,89 @@
+<div ng-controller="loginController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form ng-submit="save()" name="login_form" novalidate>
+                    <div class="row">
+                        <div class="col-md-12" ng-class="{ 'has-error': (submitted && login_form.username.$invalid) }">
+
+                            <div class="col-xs-3 customlabel">
+                                <label for="username">Корисничко име: </label>
+                            </div>
+
+                            <div class="col-xs-9 custominput">
+                                <input ng-model="username" type="text" id="username" name="username"
+                                       class="form-control" placeholder="Корисничко име" required>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3">
+                                <div class="help-block" ng-messages="login_form.username.$error" ng-if="submitted">
+                                    <p ng-message="required">Внеси корисничко име</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12" ng-class="{ 'has-error': (submitted && login_form.password.$invalid) }">
+
+                            <div class="col-xs-3 customlabel">
+                                <label for="password">Лозинка: </label>
+                            </div>
+
+                            <div class="col-xs-9 custominput">
+                                <input ng-model="password" type="password" id="password" name="password"
+                                       class="form-control" placeholder="Лозинка" required>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3">
+                                <div class="help-block" ng-messages="login_form.password.$error" ng-if="submitted">
+                                    <p ng-message="required">Внеси лозинка</p>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3 hide" id="err-message">
+                                <span>Неточно корисничко име или лозинка</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 45px;">
+                        <div class="col-md-6">
+                            <button class="btn btn-success btn-block btn-lg" type="submit" ng-click="submitted=true"
+                                    ng-keyup="submitted=false">Логирај се
+                            </button>
+                        </div>
+
+                        <div class="col-md-6 customspacing">
+                            <button class="btn btn-danger btn-block btn-lg" ng-click="cancel()">Откажи</button>
+                        </div>
+
+                        <div class="col-md-12">
+                            <hr style="border-top:solid 2px #fae7b5"/>
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+                <div class="row">
+
+                    <div class="col-xs-9 col-xs-offset-3">
+                        <div class="pull-right">
+
+                            <button class="btn btn-warning" ng-click="signup()">Регистрирај се</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img ng-src="{{serverURL + user.imageURL}}" class="img img-responsive thumbnail"/>
+            <span class="label label-primary inline-block">ID {{user.id}}</span>
+            <span class="inline-block"
+                  data-ng-class="{'label label-success': user.isAdmin == true, 'label label-danger': user.isAdmin == false}">
+                <i data-ng-class="{'fa fa-unlock': user.isAdmin == true, 'fa fa-lock': user.isAdmin == false}"></i> {{user.isAdmin ? 'Admin' : 'Pleb'}}
+            </span>
+
+
+            <div ui-view="userDetails"></div>
+        </div>
+        <div class="col-md-8 well">
+            <div class="row">
+                <div class="col-md-4" data-ng-repeat="listing in listings">
+                    <img class="img img-responsive" data-ng-src="{{serverURL + listing.imageURLs[0]}}"/>
+                    <h4>{{listing.title}}</h4>
+
+                    <p>{{listing.content}}</p>
+                    <button class="btn btn-success" data-ng-click="viewListing(listing.id);"><i class="fa fa-eye"></i> Види го постот</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

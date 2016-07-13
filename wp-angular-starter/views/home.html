@@ -1,0 +1,39 @@
+<div class="col-xs-12" style="padding: 0; z-index: -1;">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: 100%;">
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="../img/roommates.jpg" alt="..." class="img img-responsive" style="height: auto;">
+            </div>
+            <div class="item">
+                <img src="../img/roommates1.jpg" alt="..." class="img img-responsive">
+            </div>
+
+            <div class="item">
+                <img src="../img/roommates2.jpg" alt="..." class="img img-responsive">
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container" id="fixed-content">
+    <br/> <br/> <br/><br/><br/>
+
+    <div class="row">
+        <div class="col-md-12 text-center" style="z-index: 1;" id="cimer">
+            <h1 id="main-header">Најди го цимерот што ти треба</h1>
+        </div>
+
+        <form class="col-md-8 col-md-offset-2" ng-submit="search()">
+            <div class="input-group">
+                <input type="text" class="form-control" id="search" ng-model="keyword" placeholder="Внеси оглас">
+                <i class="input-group-btn">
+                    <button ui-sref="search-listings({keyword: keyword})"
+                            class="btn btn-secondary form-control custom-style"
+                            type="submit"><i class="fa fa-search"></i></button>
+                </i>
+            </div>
+        </form>
+    </div>
+</div>

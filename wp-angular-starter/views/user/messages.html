@@ -1,0 +1,29 @@
+<div class = "container" style="margin-top: 6%">
+    <h2>{{title}}</h2>
+
+    <ul class="list list-unstyled">
+        <li style="padding: 19px;" dir-paginate="message in messages | itemsPerPage: messagesPerPage" current-page="currentPage" data-ng-class = "{'well': message.seen == false}">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img style="width: 50px;" class="media-object" data-ng-src = "{{serverURL + message.userTo.imageURL}}" alt="{{message.userTo.username}}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading"><i class="fa fa-user"></i> {{message.userTo.username}} <small><i class="fa fa-clock-o"></i> {{message.sentOn}}</small></h4>
+                    <p>{{message.content.substring(0, 100);}}</p>
+                </div>
+                <div class="media-right">
+                    <button data-ng-hide = "message.seen == false" data-ng-click="toggleMessageState(message.id, false);" class="btn btn-warning btn-block"><i class="fa fa-folder"></i> Означи како непрочитана</button>
+                    <button data-ng-show = "message.seen == false" data-ng-click="toggleMessageState(message.id, true);" class="btn btn-danger btn-block"><i class="fa fa-folder-open"></i> Означи како прочитана</button>
+                    <a ui-sref = "readMessage({id: message.id})" style="margin-top: 5px" class="btn btn-default btn-block"><i class="fa fa-eye"></i> Прочитај</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true"
+                                 on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+@media(max-width:991px){
+
+  .customspacing{
+  margin-top: 20px;
+  }
+}
+
+@media(min-width:992px){
+
+  .customalign{
+  padding-left: 0;
+  }
+}
+
+body{
+	padding-top: 70px;
+}
+
+.customlabel{
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: 5px;
+}
+
+
+
+.row{
+  margin-top: 20px;
+}
+
+.dateinput{
+
+  display: inline;
+}
+
+.dateline{
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0 5px;
+}
+
+.form-control:focus
+{
+    border-color: #fae7b5;
+    box-shadow: none;
+    outline: 0 none;
+}
+
+input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder, input[type="email"]::-webkit-input-placeholder {
+    color:  #bfc1c2;
+}

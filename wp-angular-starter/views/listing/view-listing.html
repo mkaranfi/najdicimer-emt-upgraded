@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="row top-div">
+        <div class="col-md-5 ">
+            <div data-ng-show = "!isAuthor && isLoggedIn" class="report-btn">
+                <button class="btn btn-danger btn-circle" data-ng-click="toggleReportModal()">
+                    <i class="fa fa-flag fa-lg"></i>
+                </button>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>{{listing.title}}</h2></div>
+                <div class="panel-body">
+                    <p ng-bind-html = "listing.content"></p>
+
+                    <div class="text-center">
+                        <span> креиран на {{listing.createdOn}}</span>
+                    </div>
+                    <hr>
+                    <div data-ng-hide = "isAuthor || !isLoggedIn" class="pull-left">
+                        Контактирај со <span>{{listing.user.username}}</span>
+                        <div>
+                            <button class="btn btn-warning"
+                                    data-ng-click="toggleMessageModal();">
+                                <i class="fa fa-envelope fa-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div ng-show="show" class="text-right">
+                        <br/><br/>
+                        <button data-ng-show = "isAuthor" class="btn btn-warning" ng-click="editListing()">
+                            <i class="fa fa-pencil-square-o fa-lg"></i>
+                        </button>
+                        <button data-ng-show = "isAuthor" class="btn btn-danger" data-ng-click="confirmDelete()">
+                            <i class="fa fa-trash fa-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="carousel slide" id="carousel-slide">
+                <div class="carousel-inner">
+                    <div class="item" data-ng-repeat="image in listing.imageURLs" ng-class="{active:!$index}">
+                        <img data-ng-src="{{serverURL + image}}"
+                             class="img-responsive center-block img "/>
+                    </div>
+                </div>
+                <a class="carousel-control left" data-target="#carousel-slide"
+                   data-slide="prev">
+                    <i class="fa fa-chevron-circle-left fa-lg"></i>
+                </a>
+                <a class="carousel-control right" data-target="#carousel-slide"
+                   data-slide="next">
+                    <i class="fa fa-chevron-circle-right fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE MAP -->
+    <div class="row" style="margin-top: 15px; padding: 20px;">
+        <div map-lazy-load="https://maps.google.com/maps/api/js"
+             map-lazy-load-params="{{googleMapsUrl}}">
+            <ng-map>
+                <marker position = "[{{listing.location.lat}}, {{listing.location.lng}}]"></marker>
+            </ng-map>
+        </div>
+    </div>
+
+    <!-- THE REPORT MODAL -->
+    <modal title="Пријави несоодветен оглас" visible="showReport">
+        <form role="form" onsubmit="return false;">
+            <div class="form-group">
+                <label for="content">Коментар: </label><br/>
+                <textarea id="content" class="form-control" rows="10" data-ng-model="report.content"></textarea>
+            </div>
+            <input type="hidden" data-ng-model="report.listingId"/>
+            <button type="button" class="btn btn-default" data-ng-click="toggleReportModal();"><i
+                    class="fa fa-times"></i> Откажи
+            </button>
+            <button type="submit" class="btn btn-danger" data-ng-click="reportPost();"><i class="fa fa-flag "></i>
+                Пријави
+            </button>
+        </form>
+    </modal>
+    <!-- END OF THE REPORT MODAL -->
+
+    <!-- THE MESSAGE MODAL -->
+    <modal title="Испрати порака" visible="showMessage">
+        <form role="form" onsubmit="return false;">
+            <div class="form-group">
+                <h3><i class="fa fa-user"></i> {{listing.user.username}}</h3>
+            </div>
+            <div class="form-group">
+                <label for="message">Порака: </label><br/>
+                <textarea id="message" class="form-control" rows="10" data-ng-model="message.content"></textarea>
+            </div>
+            <input type="hidden" data-ng-model="message.userToId"/>
+            <button type="button" class="btn btn-default" data-ng-click="toggleMessageModal();"><i
+                    class="fa fa-times"></i> Откажи
+            </button>
+            <button type="submit" class="btn btn-success" data-ng-click="sendMessage();"><i class="fa fa-send"></i>
+                Прати порака
+            </button>
+        </form>
+    </modal>
+    <!-- END OF THE MESSAGE MODAL -->
+
+    <!-- DELETE LISTING MODAL -->
+    <modal title="Избриши оглас ?" visible="showDelete">
+        <form role="form" onsubmit="return false;">
+            <button type="button" ng-click="confirmDelete()" class="btn btn-default">
+                <i class="fa fa-times"></i> Откажи
+            </button>
+            <button type="submit" class="btn btn-danger" data-ng-click="deleteListing()">
+                <i class="fa fa-trash"></i> Избриши
+            </button>
+        </form>
+    </modal>
+    <!-- END OF DELETE MODAL -->
+</div>

@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <table class="table">
+        <tr data-ng-repeat="report in reports" data-ng-class="{'well' : report.seen == false}">
+            <td class = "col-md-8">Корисникот <strong>{{report.userFrom.username}}</strong> на датум <strong>{{report.submittedOn}}</strong> прати поплака</td>
+            <td class="col-md-2">
+                <button data-ng-click="toggleViewState(report.id, true);" data-ng-hide="{{report.seen}}" class="btn btn-danger btn-block"><i class="fa fa-folder"></i> Означи како прочитано</button>
+                <button style = "margin-top: 0px;" data-ng-click="toggleViewState(report.id, false);" data-ng-show="{{report.seen}}" class="btn btn-warning btn-block"><i class="fa fa-folder-open"></i> Означи како непрочитано</button>
+            </td>
+            <td class="col-md-2"><button ui-sref="app.reportDetails({id:report.id})" class="btn btn-primary btn-block"><i class="fa fa-eye"></i> Види</button></td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row top-div">
+        <div class="col-md-5 ">
+            <div class="form-group">
+                <label>Измени наслов</label>
+                <input class="form-control" type="text" name="title" ng-model="listing.title">
+            </div>
+            <div class="form-group">
+                <label>Измени содржина</label>
+                <textarea ui-tinymce = "tinymceOptions" name="content" style="resize: none;" ng-model="listing.content" rows=10 class="form-control"></textarea>
+            </div>
+            <div class="text-right ">
+                <button class="btn btn-warning" ng-click="editListing()"><span
+                        class="fa fa-pencil-square-o fa-lg"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="carousel slide" id="carousel-slide">
+                <div class="carousel-inner">
+                    <div class="item" data-ng-repeat="image in listing.imageURLs" ng-class="{active:!$index}">
+                        <img data-ng-src="{{serverURL + image}}"
+                             class="center-block img img-responsive"/>
+                    </div>
+                </div>
+                <a class="carousel-control left" data-target="#carousel-slide"
+                   data-slide="prev">
+                    <span class="fa fa-chevron-left"></span>
+                </a>
+                <a class="carousel-control right" data-target="#carousel-slide"
+                   data-slide="next">
+                    <span class="fa fa-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

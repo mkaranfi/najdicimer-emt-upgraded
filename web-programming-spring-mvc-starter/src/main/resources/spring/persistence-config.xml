@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:property-placeholder location="classpath:spring/data-access.properties" />
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+               p:driverClassName="${jdbc.driverClassName}"
+               p:url="${jdbc.url}"
+               p:username="${jdbc.username}"
+               p:password="${jdbc.password}" />
+
+    <jpa:repositories base-package="mk.ukim.finki.wp.persistence"
+                      entity-manager-factory-ref="entityManagerFactory"/>
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+          p:dataSource-ref="dataSource">
+
+        <property name="packagesToScan" value="mk.ukim.finki.wp.model"/>
+        <property name="persistenceUnitName" value="wp"/>
+
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+                  p:database="${jpa.database}"
+                  p:generateDdl="${jpa.generateDDL}"
+                  p:showSql="${jpa.showSQL}"/>
+        </property>
+
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+         p:entityManagerFactory-ref="entityManagerFactory"/>
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <context:component-scan base-package="mk.ukim.finki.wp.persistence"/>
+
+</beans>
