@@ -3,6 +3,7 @@
 ## Description
 This repository is published with the intention to upgrade the initial project found at /dMeshko/WP_Project.
 The project represents the source code for a single-page web application intended for simple & easy finding roommates by posting listings.
+
 ![Najdi cimer main page](http://i.imgur.com/A4q8DEe.png)
 
 ## Development
