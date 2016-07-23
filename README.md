@@ -25,7 +25,7 @@ Next, we move on to wp-angular-starter which is using the node package manager t
     npm install
 Now that gulp is installed we can run tasks. Inside the gulp.js file, run the 'build' task, and after it finishes building run the 'default' task which is consisted of a 'serve' and a 'watch' task. The 'serve' deploys our application on the specified port and the 'watch' is there to "spy" for any changes we make to the code and apply them to our deployed instance. The application will be deployed on 
 
-     http://localhost:8000
+    http://localhost:8000
 but you won't be able to see anything yet since we still need our bower components.
 So, lastly, we need to install the components angular needs using the bower package manager. Again, using any command line tool run
 
