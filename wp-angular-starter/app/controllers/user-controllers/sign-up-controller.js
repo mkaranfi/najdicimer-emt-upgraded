@@ -65,7 +65,6 @@ WPAngularStarter.controller('signupController', ['$scope', '$state', 'notificati
 
 
             }).error(function (data) {
-                console.log(data);
                 notifications.showError('Настана грешка. Не успеавме да го креираме профилот.');
 
             });

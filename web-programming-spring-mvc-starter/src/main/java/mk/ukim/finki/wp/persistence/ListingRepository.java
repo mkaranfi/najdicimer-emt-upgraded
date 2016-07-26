@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Darko on 2/21/2016.
  */
-public interface IListingRepository {
+public interface ListingRepository {
     public Listing findById(Long id);
     public List<Listing> findAll();
     public Listing saveOrUpdate(Listing listing);

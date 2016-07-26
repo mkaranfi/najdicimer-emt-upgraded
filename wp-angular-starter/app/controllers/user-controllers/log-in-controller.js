@@ -12,8 +12,8 @@ WPAngularStarter.controller('loginController', ['$scope', 'notifications', '$sta
             if ($scope.username != '' && $scope.password != '') {
 
                 var data = $.param({
-                    "username": $scope.username,
-                    "password": $scope.password
+                    username: $scope.username,
+                    password: $scope.password
                 });
 
                 var config = {
@@ -21,6 +21,19 @@ WPAngularStarter.controller('loginController', ['$scope', 'notifications', '$sta
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 };
+
+                // UserService.loginUser(data).then(function (data) {
+                //     notifications.showSuccess(data.username + ', добредојде назад!');
+                //     if (data.isAdmin == true)
+                //         window.location.href = adminURL;
+                //     else {
+                //         $state.go("home");
+                //     }
+                // }, function (data) {
+                //     console.log(data);
+                //     notifications.showError('Настана грешка. Не успеавме да ве најавиме.');
+                // });
+
 
                 UserService.loginUser(data, config).success(function (data) {
                     if (data) {
@@ -51,7 +64,6 @@ WPAngularStarter.controller('loginController', ['$scope', 'notifications', '$sta
         };
 
         $scope.signup = function () {
-
             $state.go("sign-up");
         };
 

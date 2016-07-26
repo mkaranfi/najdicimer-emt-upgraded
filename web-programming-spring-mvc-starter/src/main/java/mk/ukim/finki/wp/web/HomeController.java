@@ -1,7 +1,7 @@
 package mk.ukim.finki.wp.web;
 
-import mk.ukim.finki.wp.service.impl.ListingService;
-import mk.ukim.finki.wp.service.impl.UserService;
+import mk.ukim.finki.wp.service.impl.ListingServiceImpl;
+import mk.ukim.finki.wp.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +23,10 @@ import java.util.Date;
 @Controller
 public class HomeController {
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
     @Autowired
-    ListingService listingService;
+    ListingServiceImpl listingService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request) {

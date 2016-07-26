@@ -8,7 +8,7 @@
         and BeanNameViewResolver, - and uses the requested media type (determined
         by the path extension) to pick a matching view. - When the media type is
         'text/html', it will delegate to the InternalResourceViewResolver's JstlView,
-        - otherwise to the BeanNameViewResolver. -->
+        - otherwise to the BeanNameViewResolver.  -->
 
     <!-- CONFIGURATION FOR THE VIEW RESOLVER -->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
@@ -22,11 +22,9 @@
                     <property name="prefix" value="/WEB-INF/jsp/"/>
                     <property name="suffix" value=".jsp"/>
                 </bean>
-
                 <!-- Used here for 'xml' and 'atom' views -->
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
             </list>
         </property>
     </bean>
-
 </beans>

@@ -3,9 +3,10 @@ package mk.ukim.finki.wp.persistence.impl;
 import mk.ukim.finki.wp.model.Message;
 import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.persistence.BaseRepository;
-import mk.ukim.finki.wp.persistence.IUserRepository;
+import mk.ukim.finki.wp.persistence.UserRepository;
 import mk.ukim.finki.wp.persistence.helper.PredicateBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -19,9 +20,12 @@ import java.util.List;
  */
 
 @Repository
-public class UserRepository implements IUserRepository {
+public class UserRepositoryImpl implements UserRepository {
     @Autowired
     BaseRepository baseRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void save(User user) {
@@ -32,8 +36,8 @@ public class UserRepository implements IUserRepository {
     public User logIn(String username, String password) {
         List<User> users = findByUsername(username);
 
-        if (users.size() != 0){ //the user exists
-            if (users.get(0).getPassword().equals(password))
+        if (users.size() != 0) { //the user exists
+            if (passwordEncoder.matches(password, users.get(0).getPassword()))
                 return users.get(0);
         }
         return null;
@@ -44,7 +48,7 @@ public class UserRepository implements IUserRepository {
         return baseRepository.getById(User.class, id);
     }
 
-    private List<User> findByUsername(final String username){
+    private List<User> findByUsername(final String username) {
         return baseRepository.find(User.class, new PredicateBuilder<User>() {
             @Override
             public Predicate toPredicate(CriteriaBuilder cb, CriteriaQuery<User> cq, Root<User> root) {
@@ -63,8 +67,7 @@ public class UserRepository implements IUserRepository {
         baseRepository.delete(User.class, id);
     }
 
-    public List<User> getAllAdmins()
-    {
+    public List<User> getAllAdmins() {
         return baseRepository.find(User.class, new PredicateBuilder<User>() {
             @Override
             public Predicate toPredicate(CriteriaBuilder cb, CriteriaQuery<User> cq, Root<User> root) {

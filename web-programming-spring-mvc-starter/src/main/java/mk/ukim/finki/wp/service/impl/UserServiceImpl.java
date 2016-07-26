@@ -2,11 +2,9 @@ package mk.ukim.finki.wp.service.impl;
 
 import mk.ukim.finki.wp.model.Message;
 import mk.ukim.finki.wp.model.User;
-import mk.ukim.finki.wp.persistence.IUserRepository;
-import mk.ukim.finki.wp.service.IUserService;
+import mk.ukim.finki.wp.persistence.UserRepository;
+import mk.ukim.finki.wp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,15 +23,13 @@ import java.util.List;
  */
 
 @Service
-public class UserService implements IUserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    IUserRepository userRepository;
+    UserRepository userRepository;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void signUp(String name, String surname, String birthDate, String email, String username, String password, Boolean isAdmin, MultipartFile image) {
@@ -62,8 +58,10 @@ public class UserService implements IUserService{
             }
         } else {
             //return "You failed to upload " + name + " because the file was empty.";
-            uploadPath = ""; //set default user image here
+            uploadPath = ""; // /set default user image here
         }
+
+        password = passwordEncoder.encode(password);
 
         User user = new User(name, surname, birthDate, email, username, password, imageURL, isAdmin, uploadPath1);
         userRepository.save(user);
@@ -79,6 +77,9 @@ public class UserService implements IUserService{
         File f1 = new File(p.toAbsolutePath().toString());
         f1.mkdirs();
         String defaultImageURL = "/resources/users/default.jpg";
+
+        password = passwordEncoder.encode(password);
+
         User user = new User(name, surname, birthDate, email, username, password, defaultImageURL, false, uploadPath);
         userRepository.save(user);
     }

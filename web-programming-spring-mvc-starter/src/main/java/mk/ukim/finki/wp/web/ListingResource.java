@@ -2,8 +2,8 @@ package mk.ukim.finki.wp.web;
 
 import mk.ukim.finki.wp.model.Listing;
 import mk.ukim.finki.wp.model.Report;
-import mk.ukim.finki.wp.service.IListingService;
-import mk.ukim.finki.wp.service.IUserService;
+import mk.ukim.finki.wp.service.ListingService;
+import mk.ukim.finki.wp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +20,10 @@ import java.util.*;
 @RequestMapping(value = "/api/listing", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ListingResource {
     @Autowired
-    IListingService listingService;
+    ListingService listingService;
 
     @Autowired
-    IUserService userService;
+    UserService userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Listing> getAllListings() {

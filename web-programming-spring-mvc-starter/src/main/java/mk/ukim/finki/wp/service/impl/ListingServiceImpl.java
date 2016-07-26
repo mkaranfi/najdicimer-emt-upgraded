@@ -4,8 +4,8 @@ import mk.ukim.finki.wp.model.Listing;
 import mk.ukim.finki.wp.model.Location;
 import mk.ukim.finki.wp.model.Report;
 import mk.ukim.finki.wp.model.User;
-import mk.ukim.finki.wp.persistence.IListingRepository;
-import mk.ukim.finki.wp.service.IListingService;
+import mk.ukim.finki.wp.persistence.ListingRepository;
+import mk.ukim.finki.wp.service.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,14 +24,15 @@ import java.util.List;
  * Created by Darko on 2/21/2016.
  */
 @Service
-public class ListingService implements IListingService {
+public class ListingServiceImpl implements ListingService {
     @Autowired
-    IListingRepository listingRepository;
+    ListingRepository listingRepository;
 
     @Override
     public void updateListing(Listing listing){
         listingRepository.saveOrUpdate(listing);
     }
+
     @Override
     public Listing createListing(String title, String content, Date createdOn, ArrayList<MultipartFile> images, User user, String locationName, String lat, String lng) {
         ArrayList<String> imageURLs = getImages(images, user, title);

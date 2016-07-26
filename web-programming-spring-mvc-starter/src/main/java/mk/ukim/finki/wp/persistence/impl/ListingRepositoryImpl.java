@@ -5,8 +5,7 @@ import mk.ukim.finki.wp.model.Location;
 import mk.ukim.finki.wp.model.Report;
 import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.persistence.BaseRepository;
-import mk.ukim.finki.wp.persistence.IListingRepository;
-import mk.ukim.finki.wp.persistence.IUserRepository;
+import mk.ukim.finki.wp.persistence.ListingRepository;
 import mk.ukim.finki.wp.persistence.helper.PredicateBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +20,7 @@ import java.util.List;
  * Created by Darko on 2/21/2016.
  */
 @Repository
-public class ListingRepository implements IListingRepository {
+public class ListingRepositoryImpl implements ListingRepository {
 
     @Autowired
     BaseRepository baseRepository;

@@ -32,14 +32,10 @@ WPAngularStarter.controller('ViewListingController', function ($sce, $scope, $st
             $scope.isAuthor = true;
 
         //the map
-        NgMap.getMap().then(function(map) {
+        NgMap.getMap().then(function (map) {
             var location = {lat: parseFloat(response.data.location.lat), lng: parseFloat(response.data.location.lng)};
             map.setCenter(location);
             map.setZoom(15);
-
-            console.log(map.getCenter());
-            console.log('markers', map.markers);
-            console.log('shapes', map.shapes);
         });
     });
 

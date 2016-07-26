@@ -16,8 +16,8 @@ var WPAngularStarter = angular.module('wp-angular-starter', [
     'ngMap',
     'ngNotificationsBar']);
 
-WPAngularStarter.constant("serverURL", "http://localhost:8080/servlet-showcase");
-WPAngularStarter.constant("apiURL", "http://localhost:8080/servlet-showcase/api");
+WPAngularStarter.constant("serverURL", "http://localhost:8080");
+WPAngularStarter.constant("apiURL", "http://localhost:8080/api");
 WPAngularStarter.constant("siteURL", "http://localhost:8000/#");
 WPAngularStarter.constant("adminURL", "http://localhost:8000/admin");
 

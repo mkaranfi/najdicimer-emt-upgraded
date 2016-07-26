@@ -6,8 +6,9 @@ WPAngularStarter.factory('UserService', ['$http', 'apiURL', function ($http, api
     return {
 
         saveUser: function (data, config) {
-            return $http.post("http://localhost:8080/servlet-showcase/api/user/signup", data, config);
+            return $http.post(apiURL + "/user/signup", data, config);
         },
+
         editUser: function (user) {
             return $http({
                 method: 'POST',
@@ -28,11 +29,16 @@ WPAngularStarter.factory('UserService', ['$http', 'apiURL', function ($http, api
         },
 
         isUnique: function (username) {
-            return $http.get("http://localhost:8080/servlet-showcase/api/users/" + username);
+            return $http.get("http://localhost:8080/api/users/" + username);
         },
 
         loginUser: function (data, config) {
-            return $http.post("http://localhost:8080/servlet-showcase/api/user/login", data, config);
+            // var headers = credentials ? {authorization : "Basic "
+            // + btoa(credentials.username + ":" + credentials.password)
+            // } : {};
+            //
+            // return $http.get(apiURL + '/user/user', {headers : headers});
+            return $http.post(apiURL + '/user/login', data, config);
         },
 
         getUser: function (id) {

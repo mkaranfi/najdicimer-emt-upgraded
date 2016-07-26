@@ -70,7 +70,6 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-servlet-api</artifactId>
             <version>${tomcat.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -81,7 +80,6 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper-el</artifactId>
             <version>${tomcat.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -102,6 +100,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -142,26 +144,17 @@
             </exclusions>
         </dependency>
 
-        <!-- Spring Security -->
-
+        <!-- Spring Boot Security -->
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>4.1.0.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>4.1.0.RELEASE</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
-            <version>4.1.0.RELEASE</version>
+            <version>4.1.1.RELEASE</version>
         </dependency>
-
 
         <!-- used for EhCacheCacheManager -->
         <dependency>
@@ -432,24 +425,10 @@
                     </descriptorRefs>
                 </configuration>
             </plugin>
+
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <server>tomcat-development-server</server>
-                    <port>8080</port>
-                    <path>/servlet-showcase</path>
-                    <uriEncoding>UTF-8</uriEncoding>
-                    <systemProperties>
-                        <JAVA_OPTS>-Xms1024m -Xmx2048m -XX:+DisableExplicitGC
-                            -Dcom.sun.management.jmxremote
-                            -XX:PermSize=256m
-                            -XX:MaxPermSize=512m -Xnoagent
-                            -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
-                        </JAVA_OPTS>
-                    </systemProperties>
-                </configuration>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
         </plugins>

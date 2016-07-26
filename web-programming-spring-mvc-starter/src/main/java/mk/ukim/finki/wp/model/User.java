@@ -39,6 +39,7 @@ public class User extends BaseEntity {
     private String username;
 
     @NotEmpty
+    @Length(max = 60)
     private String password;
 
     private String imageURL;
