@@ -12,15 +12,12 @@ Several technologies were used for the application development.
 The Spring Web MVC framework to build our RESTful API and the magic of AngularJS to create the user interaction. Other technologies include JPA, MySQL, twitter-bootstrap, working with JSON data and few others.
 
 ## How to run?
-The web-programming-spring-mvc-starter is using the Maven build system and has built-in configuration to run on the Apache Tomcat server --version release 7. Once the project is opened inside an IDE, create a new Maven configuration, name it "run", add the command line
-
-    tomcat7:run
-and that's it, our API is now ready to deploy!
+The web-programming-spring-mvc-starter is a Spring Boot application, so you're one button away of deploying our API! Open the project inside any IDE and run the 'NajdiCimer' application configuration.
 
 Once deployed the api can be found on 
 
-    http://localhost:8080/servlet-showcase
-Next, we move on to wp-angular-starter which is using the node package manager to install some important modules our application is going to need to start running, like gulp.js. So, using any command line tool, run
+    http://localhost:8080
+Next, we move on to the wp-angular-starter which is using the node package manager to install some important modules our application is going to need to start running, like gulp.js. So, using any command line tool, run
 
     npm install
 Now that gulp is installed we can run tasks. Inside the gulp.js file, run the 'build' task, and after it finishes building run the 'default' task which is consisted of a 'serve' and a 'watch' task. The 'serve' deploys our application on the specified port and the 'watch' is there to "spy" for any changes we make to the code and apply them to our deployed instance. The application will be deployed on 
