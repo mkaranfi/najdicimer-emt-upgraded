@@ -1,7 +1,5 @@
 package mk.ukim.finki.wp.model;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;

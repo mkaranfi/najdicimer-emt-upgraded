@@ -3,13 +3,20 @@ package mk.ukim.finki.wp.web;
 import mk.ukim.finki.wp.model.Message;
 import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.service.UserService;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 import java.util.Collections;
+
 
 /**
  * Created by Darko on 2/26/2016.
@@ -21,10 +28,21 @@ public class UserResource {
     @Autowired
     UserService userService;
 
-//    @RequestMapping("/user")
-//    public Principal user(Principal user) {
-//        return user;
-//    }
+    @RequestMapping(value = "/session/{id}", method = RequestMethod.GET)
+    public void getUserId(@PathVariable Long id, HttpSession session, HttpServletResponse response) throws IOException {
+        Logger logger = Logger.getLogger(UserResource.class.getName());
+        logger.log(Level.DEBUG, id);
+        session.setAttribute("userId", id);
+        response.sendRedirect("http://localhost:8000");
+    }
+
+    @RequestMapping("/current")
+    public Principal restoreSession(HttpServletRequest request) {
+        Logger logger = Logger.getLogger(UserResource.class.getName());
+        logger.log(Level.DEBUG, request.getSession().getAttribute("userId"));
+        return null;
+        //return userService.getUser((Long) session.getAttribute("userId"));
+    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<User> getAllUsers() {
@@ -58,8 +76,8 @@ public class UserResource {
         userService.update(user);
     }
 
-    @RequestMapping(value="/login", method=RequestMethod.POST)
-    public User loginUser(@RequestParam String username, @RequestParam String password, HttpSession session){
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public User loginUser(@RequestParam String username, @RequestParam String password, HttpSession session) {
         User user = userService.logIn(username, password);
         if (user != null)
             session.setAttribute("userId", user.getId());

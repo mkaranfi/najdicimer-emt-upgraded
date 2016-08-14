@@ -3,10 +3,19 @@
  */
 
 
-WPAngularStarter.controller('loginController', ['$scope', 'notifications', '$state',
-    'UserService', "$rootScope", "adminURL", function ($scope, notifications, $state, UserService, $rootScope, adminURL) {
+WPAngularStarter.controller('loginController', ['$scope', '$window', 'notifications', '$state',
+    'UserService', "$rootScope", "adminURL", function ($scope, $window, notifications, $state, UserService, $rootScope, adminURL) {
         $scope.username = '';
         $scope.password = '';
+
+
+        $scope.cancel = function () {
+
+            $scope.username = '';
+            $scope.password = '';
+
+            $state.go("home");
+        };
 
         $scope.save = function () {
             if ($scope.username != '' && $scope.password != '') {
@@ -21,19 +30,6 @@ WPAngularStarter.controller('loginController', ['$scope', 'notifications', '$sta
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 };
-
-                // UserService.loginUser(data).then(function (data) {
-                //     notifications.showSuccess(data.username + ', добредојде назад!');
-                //     if (data.isAdmin == true)
-                //         window.location.href = adminURL;
-                //     else {
-                //         $state.go("home");
-                //     }
-                // }, function (data) {
-                //     console.log(data);
-                //     notifications.showError('Настана грешка. Не успеавме да ве најавиме.');
-                // });
-
 
                 UserService.loginUser(data, config).success(function (data) {
                     if (data) {
@@ -65,13 +61,5 @@ WPAngularStarter.controller('loginController', ['$scope', 'notifications', '$sta
 
         $scope.signup = function () {
             $state.go("sign-up");
-        };
-
-        $scope.cancel = function () {
-
-            $scope.username = '';
-            $scope.password = '';
-
-            $state.go("home");
         };
     }]);

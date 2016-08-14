@@ -48,7 +48,8 @@ public class UserRepositoryImpl implements UserRepository {
         return baseRepository.getById(User.class, id);
     }
 
-    private List<User> findByUsername(final String username) {
+    @Override
+    public List<User> findByUsername(final String username) {
         return baseRepository.find(User.class, new PredicateBuilder<User>() {
             @Override
             public Predicate toPredicate(CriteriaBuilder cb, CriteriaQuery<User> cq, Root<User> root) {

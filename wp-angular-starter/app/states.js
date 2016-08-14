@@ -56,7 +56,7 @@ WPAngularStarter.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('home', {
-            url: '/',
+            url: '/{id}',
             templateUrl: 'views/home.html',
             controller: 'homeController',
             data: {

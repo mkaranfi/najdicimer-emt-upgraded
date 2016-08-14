@@ -3,14 +3,9 @@ package mk.ukim.finki.wp.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Past;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Darko on 2/19/2016.
@@ -38,16 +33,15 @@ public class User extends BaseEntity {
     @Length(max = 50)
     private String username;
 
-    @NotEmpty
     @Length(max = 60)
     private String password;
 
     private String imageURL;
 
-    @OneToMany(mappedBy = "userTo", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "userTo", fetch = FetchType.LAZY)
     private List<Message> sentMessages;
 
-    @OneToMany(mappedBy = "userFrom", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "userFrom", fetch = FetchType.LAZY)
     private List<Message> receivedMessages;
 
     private String uploadPath;

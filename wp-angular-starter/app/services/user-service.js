@@ -2,8 +2,12 @@
  * Created by Dell on 16-Mar-16.
  */
 
-WPAngularStarter.factory('UserService', ['$http', 'apiURL', function ($http, apiURL) {
+WPAngularStarter.factory('UserService', ['$http', 'apiURL', 'serverURL', function ($http, apiURL, serverURL) {
     return {
+
+        authenticateWithFacebook: function() {
+            return $http.get(apiURL + '/user/user');
+        },
 
         saveUser: function (data, config) {
             return $http.post(apiURL + "/user/signup", data, config);

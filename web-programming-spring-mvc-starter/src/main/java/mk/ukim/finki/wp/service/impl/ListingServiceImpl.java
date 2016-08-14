@@ -5,7 +5,10 @@ import mk.ukim.finki.wp.model.Location;
 import mk.ukim.finki.wp.model.Report;
 import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.persistence.ListingRepository;
+import mk.ukim.finki.wp.persistence.impl.SearchRepositoryImpl;
 import mk.ukim.finki.wp.service.ListingService;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +30,9 @@ import java.util.List;
 public class ListingServiceImpl implements ListingService {
     @Autowired
     ListingRepository listingRepository;
+
+    @Autowired
+    SearchRepositoryImpl searchRepository;
 
     @Override
     public void updateListing(Listing listing){
@@ -116,7 +122,9 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     public List<Listing> search(String keyword) {
-        return listingRepository.search(keyword);
+        List<Listing> listings =  searchRepository.searchKeyword(Listing.class, keyword, "title", "content");
+        return listings;
+//        return listingRepository.search(keyword);
     }
 
     private String fixFilterDateFormat(Integer day, Integer month, Integer year) {

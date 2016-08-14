@@ -10,15 +10,27 @@ import java.util.List;
  * Created by Darko on 2/20/2016.
  */
 public interface UserRepository {
-    public void save(User user);
-    public User logIn(String username, String password);
-    public User findById(Long id);
-    public List<User> findAll();
-    public void delete(Long id);
-    public List<User> getAllAdmins();
-    public void sendMessage(Message message);
-    public List<Message> getInbox(Long userId);
-    public List<Message> getOutbox(Long userId);
-    public Message getMessage(Long messageId);
-    public void saveMessage(Message message);
+    void save(User user);
+
+    User logIn(String username, String password);
+
+    List<User> findAll();
+
+    User findById(Long id);
+
+    List<User> findByUsername(String username);
+
+    void delete(Long id);
+
+    List<User> getAllAdmins();
+
+    void sendMessage(Message message);
+
+    List<Message> getInbox(Long userId);
+
+    List<Message> getOutbox(Long userId);
+
+    Message getMessage(Long messageId);
+
+    void saveMessage(Message message);
 }

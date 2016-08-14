@@ -18,6 +18,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>org.springframework.web.context.request.RequestContextListener</listener>
 
 
     <!-- - Servlet that dispatches request to registered handlers (Controller

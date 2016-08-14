@@ -2,6 +2,10 @@
  * Created by Dell on 16-Mar-16.
  */
 
-WPAngularStarter.controller('homeController', ['$scope', function ($scope, toastr) {
+WPAngularStarter.controller('homeController',  function ($scope, toastr, $http, apiURL) {
     $("#carousel-example-generic").carousel("cycle");
-}]);
+
+    $http.get(apiURL + '/user/current').then(function(response){
+        console.log(response);
+    });
+});
