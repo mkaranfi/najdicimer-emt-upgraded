@@ -58,14 +58,6 @@
             <version>5.0.1.Final</version>
         </dependency>
 
-        <!-- If using JPA, add: -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.10.Final</version>
-        </dependency>
-
-
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>

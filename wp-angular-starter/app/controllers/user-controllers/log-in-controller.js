@@ -8,14 +8,70 @@ WPAngularStarter.controller('loginController', ['$scope', '$window', 'notificati
         $scope.username = '';
         $scope.password = '';
 
-
         $scope.cancel = function () {
-
             $scope.username = '';
             $scope.password = '';
 
             $state.go("home");
         };
+
+        // var self = $scope;
+        //
+        // var authenticate = function (credentials, callback) {
+        //     console.log('credentials');
+        //     console.log(credentials);
+        //     var headers = credentials ? {
+        //         authorization: "Basic "
+        //         + btoa(credentials.username + ":" + credentials.password)
+        //     } : {};
+        //     headers.common["X-Requested-With"] = 'XMLHttpRequest';
+        //     headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        //     console.log(headers);
+        //     // $http.get('http://localhost:8080/api/user', {headers: headers}).then(function (response) {
+        //     //     if (response.data.name) {
+        //     //         console.log(response.data);
+        //     //         $rootScope.authenticated = true;
+        //     //     } else {
+        //     //         console.log('nope');
+        //     //         $rootScope.authenticated = false;
+        //     //     }
+        //     //     callback && callback();
+        //     // }, function () {
+        //     //     console.log('fail');
+        //     //     $rootScope.authenticated = false;
+        //     //     callback && callback();
+        //     // });
+        //
+        // };
+
+        // authenticate();
+        //
+        // self.credentials = {};
+        //
+        // $scope.login = function () {
+        //     console.log('login()');
+        //     console.log(self.credentials);
+        //     // authenticate(self.credentials, function () {
+        //     //     if ($rootScope.authenticated) {
+        //     //         notifications.showSuccess(self.credentials.username + ', добредојде назад!');
+        //     //         // $state.go("home");
+        //     //         console.log('success login');
+        //     //         self.error = false;
+        //     //     } else {
+        //     //         // $state.go("login");
+        //     //         console.log('error login');
+        //     //         notifications.showError('Настана грешка. Не успеавме да ве најавиме.');
+        //     //         self.error = true;
+        //     //     }
+        //     // });
+        // };
+
+        // self.logout = function () {
+        //     $http.post('http://localhost:8080/logout', {}).finally(function () {
+        //         $rootScope.authenticated = false;
+        //         $state.go("home");
+        //     });
+        // };
 
         $scope.save = function () {
             if ($scope.username != '' && $scope.password != '') {

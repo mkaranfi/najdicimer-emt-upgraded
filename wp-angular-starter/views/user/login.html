@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form ng-submit="save()" name="login_form" novalidate>
+            <form ng-submit="login()" name="login_form" novalidate>
                 <div class="row">
                     <div class="col-md-12" ng-class="{ 'has-error': (submitted && login_form.username.$invalid) }">
 
@@ -67,6 +67,11 @@
 
 
             </form>
+            <!--<form action="http://localhost:8080/login" method="post">-->
+                <!--<input type="text" name="username" id="username">-->
+                <!--<input type="text" name="password" id="password">-->
+                <!--<button type="submit">Login</button>-->
+            <!--</form>-->
             <form action="http://localhost:8080/login/facebook" method="post">
                 <button type="submit">Connect to Facebook</button>
             </form>

@@ -48,6 +48,17 @@ public class User extends BaseEntity {
 
     private Boolean isAdmin;
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.ROLE_USER;
+
     public User() {
     }
 

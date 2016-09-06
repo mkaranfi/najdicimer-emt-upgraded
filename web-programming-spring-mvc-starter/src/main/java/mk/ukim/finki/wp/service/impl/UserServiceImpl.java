@@ -4,7 +4,13 @@ import mk.ukim.finki.wp.model.Message;
 import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.persistence.UserRepository;
 import mk.ukim.finki.wp.service.UserService;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +21,7 @@ import java.io.FileOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +30,7 @@ import java.util.List;
  */
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
@@ -154,6 +161,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public Message getMessage(Long messageId) {
         return userRepository.getMessage(messageId);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        List<User> users = userRepository.findByUsername(username);
+        if(!users.isEmpty()) {
+            User user = users.get(0);
+            if (user != null) {
+                Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
+                SimpleGrantedAuthority role = new SimpleGrantedAuthority(user.getRole().toString());
+                List<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
+                logger.log(Level.DEBUG, role);
+                logger.log(Level.DEBUG, user.getUsername());
+                logger.log(Level.DEBUG, user.getPassword());
+                roles.add(role);
+                return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), roles);
+            } else {
+                return null;
+            }
+        }
+        return null;
     }
 
 }

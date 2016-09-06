@@ -5,7 +5,7 @@
 WPAngularStarter.controller('homeController',  function ($scope, toastr, $http, apiURL) {
     $("#carousel-example-generic").carousel("cycle");
 
-    $http.get(apiURL + '/user/current').then(function(response){
+    $http.get(apiURL + '/user').then(function(response){
         console.log(response);
     });
 });

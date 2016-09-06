@@ -1,5 +1,6 @@
 package mk.ukim.finki.wp.model;
 
+import mk.ukim.finki.wp.configuration.SerbianNormalizationFilterFactory;
 import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -27,7 +28,8 @@ import java.util.Set;
 @AnalyzerDef(name = "analyzer",
         tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
         filters = {
-                @TokenFilterDef(factory = LowerCaseFilterFactory.class)
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+                @TokenFilterDef(factory = SerbianNormalizationFilterFactory.class)
         })
 @Table(name = "listings")
 public class Listing extends BaseEntity {
@@ -87,7 +89,7 @@ public class Listing extends BaseEntity {
         return new ArrayList<String>(imageURLs);
     }
 
-    public Location getLocation(){
+    public Location getLocation() {
         return location;
     }
 
@@ -115,7 +117,7 @@ public class Listing extends BaseEntity {
         this.user = user;
     }
 
-    public void setLocation(Location location){
+    public void setLocation(Location location) {
         this.location = location;
     }
 }

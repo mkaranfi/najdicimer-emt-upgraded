@@ -1,12 +1,18 @@
 package mk.ukim.finki.wp.web;
 
 import mk.ukim.finki.wp.model.Message;
+import mk.ukim.finki.wp.model.Role;
 import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.service.UserService;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.SpringVersion;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,23 +36,34 @@ public class UserResource {
 
     @RequestMapping(value = "/session/{id}", method = RequestMethod.GET)
     public void getUserId(@PathVariable Long id, HttpSession session, HttpServletResponse response) throws IOException {
-        Logger logger = Logger.getLogger(UserResource.class.getName());
-        logger.log(Level.DEBUG, id);
         session.setAttribute("userId", id);
         response.sendRedirect("http://localhost:8000");
     }
 
     @RequestMapping("/current")
     public Principal restoreSession(HttpServletRequest request) {
-        Logger logger = Logger.getLogger(UserResource.class.getName());
-        logger.log(Level.DEBUG, request.getSession().getAttribute("userId"));
         return null;
         //return userService.getUser((Long) session.getAttribute("userId"));
     }
 
+    //    @RequestMapping(value = "", method = RequestMethod.GET)
+//    public List<User> getAllUsers() {
+//        return userService.getAllUsers();
+//    }
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public Principal user(Principal user) {
+        Logger logger = Logger.getLogger(UserResource.class.getName());
+        logger.log(Level.DEBUG, user);
+        return user;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public void logoutPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        response.sendRedirect("http://localhost:8000");
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)

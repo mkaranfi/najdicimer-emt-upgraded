@@ -4,6 +4,8 @@ import mk.ukim.finki.wp.model.Listing;
 import mk.ukim.finki.wp.model.Report;
 import mk.ukim.finki.wp.service.ListingService;
 import mk.ukim.finki.wp.service.UserService;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

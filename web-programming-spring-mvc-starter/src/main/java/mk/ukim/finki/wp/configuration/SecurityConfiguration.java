@@ -4,15 +4,20 @@ import mk.ukim.finki.wp.authentication.LoginSuccessHandler;
 import mk.ukim.finki.wp.authentication.OAuth2TokenService;
 import mk.ukim.finki.wp.authentication.OAuthClientResource;
 import mk.ukim.finki.wp.model.Provider;
+import mk.ukim.finki.wp.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.access.vote.RoleVoter;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -38,16 +43,43 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 @EnableOAuth2Client
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     OAuth2ClientContext oauth2ClientContext;
+
+    @Autowired
+    private UserServiceImpl userDetailsService;
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+
+        auth.inMemoryAuthentication()
+                .withUser("user").password("password").roles("USER");
+//                .and()
+//                .withUser("admin").password("admin123").roles("USER", "ADMIN");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // csrf() should be enabled
         http
                 .csrf().disable();
+
+        http
+                .httpBasic()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/api/user/admin/**")
+                .hasRole("ADMIN")
+                .and()
+                .formLogin()
+                .and()
+                .logout()
+                .invalidateHttpSession(true);
 
         http.authorizeRequests()
                 .antMatchers("/**")
